@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<!-- saved from url=(0050)file:///C:/Users/gerar/Downloads/Firm_Tools_2.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Firm Tools — Gerald Miller, P.A.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com/">
+<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+<link href="./Firm Tools_files/css2" rel="stylesheet">
+<style>
+  :root {
+    --cream: #F5EFE4;
+    --parchment: #EFE7D6;
+    --warm-white: #FBF7EF;
+    --ink: #2A2520;
+    --soft-ink: #5A5048;
+    --muted: #8A7F73;
+    --rule: #D9CFBE;
+    --blue: #2C5282;
+    --blue-deep: #1E3A5F;
+    --blue-soft: #E8EEF5;
+    --accent: #B8860B;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+  }
+
+  body {
+    background-image:
+      radial-gradient(circle at 18% 12%, rgba(44, 82, 130, 0.07), transparent 42%),
+      radial-gradient(circle at 82% 88%, rgba(184, 134, 11, 0.09), transparent 46%),
+      radial-gradient(circle at 60% 40%, rgba(212, 175, 55, 0.04), transparent 55%);
+    background-size: 200% 200%;
+    background-position: 0% 0%;
+    animation: drift 22s ease-in-out infinite alternate;
+    padding: 60px 40px 80px;
+  }
+
+  @keyframes drift {
+    0%   { background-position:   0%   0%, 100% 100%,  50%  50%; }
+    100% { background-position: 100% 100%,   0%   0%,  60%  40%; }
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes shimmer {
+    0%, 100% { opacity: 0.55; }
+    50%      { opacity: 1; }
+  }
+
+  @keyframes pulseDot {
+    0%, 100% { transform: scale(1);   opacity: 0.9; }
+    50%      { transform: scale(1.5); opacity: 0.4; }
+  }
+
+  .wrap {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    padding-bottom: 28px;
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: 56px;
+    position: relative;
+    opacity: 0;
+    animation: fadeUp 0.7s ease 0.05s forwards;
+  }
+
+  header::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -1px;
+    height: 2px;
+    width: 64px;
+    background: linear-gradient(90deg, var(--blue), var(--accent));
+    border-radius: 2px;
+  }
+
+  .title-block { position: relative; }
+
+  .title-block .eyebrow {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .title-block .eyebrow::before {
+    content: "";
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--accent);
+    animation: pulseDot 2.4s ease-in-out infinite;
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.18);
+  }
+
+  h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
+    font-size: 56px;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    background: linear-gradient(110deg, var(--ink) 0%, var(--ink) 55%, var(--blue) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .meta {
+    text-align: right;
+    font-size: 13px;
+    color: var(--soft-ink);
+    line-height: 1.6;
+  }
+
+  .meta .firm {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    color: var(--ink);
+    letter-spacing: 0.02em;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  .card {
+    position: relative;
+    background: var(--warm-white);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: 36px 36px 32px;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    min-height: 220px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    overflow: hidden;
+    opacity: 0;
+    animation: fadeUp 0.65s ease forwards;
+  }
+
+  .card:nth-child(1) { animation-delay: 0.15s; }
+  .card:nth-child(2) { animation-delay: 0.25s; }
+  .card:nth-child(3) { animation-delay: 0.35s; }
+  .card:nth-child(4) { animation-delay: 0.45s; }
+
+  .card::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+    background: linear-gradient(180deg, var(--blue), var(--accent));
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 0.4s ease;
+  }
+
+  .card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at top right, rgba(44, 82, 130, 0.07), transparent 55%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+  }
+
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 18px 38px -18px rgba(44, 37, 32, 0.22);
+    border-color: var(--blue);
+  }
+
+  .card:hover::before { transform: scaleY(1); }
+  .card:hover::after  { opacity: 1; }
+
+  .card-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    font-style: italic;
+    color: var(--accent);
+    letter-spacing: 0.05em;
+    margin-bottom: 16px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .card-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
+    font-size: 30px;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    margin-bottom: 12px;
+  }
+
+  .card-desc {
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--soft-ink);
+    margin-bottom: auto;
+    padding-bottom: 20px;
+  }
+
+  .card-cta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--blue);
+  }
+
+  .card-cta .arrow {
+    display: inline-block;
+    transition: transform 0.3s ease;
+  }
+
+  .card:hover .card-cta .arrow {
+    transform: translateX(6px);
+    animation: shimmer 1.4s ease-in-out infinite;
+  }
+
+  footer {
+    margin-top: 64px;
+    padding-top: 24px;
+    border-top: 1px solid var(--rule);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    opacity: 0;
+    animation: fadeUp 0.65s ease 0.7s forwards;
+  }
+
+  footer .mark {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 14px;
+    text-transform: none;
+    letter-spacing: 0.02em;
+    color: var(--soft-ink);
+  }
+
+  /* Lookup section */
+  .lookups {
+    margin-top: 48px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    opacity: 0;
+    animation: fadeUp 0.65s ease 0.55s forwards;
+  }
+
+  .lookup {
+    background: var(--warm-white);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    overflow: hidden;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+  }
+
+  .lookup:hover {
+    border-color: rgba(44, 82, 130, 0.5);
+  }
+
+  .lookup.open {
+    border-color: var(--blue);
+    box-shadow: 0 18px 38px -18px rgba(44, 37, 32, 0.22);
+  }
+
+  .lookup-header {
+    width: 100%;
+    background: transparent;
+    border: none;
+    padding: 28px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    text-align: left;
+    font-family: inherit;
+    color: inherit;
+    transition: background 0.2s ease;
+  }
+
+  .lookup-header:hover {
+    background: rgba(44, 82, 130, 0.03);
+  }
+
+  .lookup-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
+    font-size: 26px;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    line-height: 1.2;
+  }
+
+  .lookup-sub {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 6px;
+  }
+
+  .lookup-chev {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--blue-soft), #fff);
+    color: var(--blue);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.3s ease;
+    flex-shrink: 0;
+    margin-left: 16px;
+    box-shadow: inset 0 0 0 1px rgba(44, 82, 130, 0.15);
+  }
+
+  .lookup:hover .lookup-chev {
+    background: linear-gradient(135deg, #fff, var(--blue-soft));
+  }
+
+  .lookup.open .lookup-chev {
+    transform: rotate(180deg);
+    background: var(--blue);
+    color: #fff;
+  }
+
+  .lookup-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease;
+  }
+
+  .lookup.open .lookup-body {
+    max-height: 560px;
+  }
+
+  .lookup-inner {
+    padding: 4px 24px 24px;
+    border-top: 1px solid var(--rule);
+  }
+
+  .lookup-search {
+    width: 100%;
+    margin: 16px 0 14px;
+    padding: 10px 14px;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    background: var(--cream);
+    color: var(--ink);
+    outline: none;
+    transition: border-color 0.2s ease, background 0.2s ease;
+  }
+
+  .lookup-search:focus {
+    border-color: var(--blue);
+    background: #fff;
+  }
+
+  .lookup-list {
+    max-height: 380px;
+    overflow-y: auto;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2px 12px;
+    padding-right: 4px;
+  }
+
+  .lookup-list::-webkit-scrollbar { width: 6px; }
+  .lookup-list::-webkit-scrollbar-track { background: transparent; }
+  .lookup-list::-webkit-scrollbar-thumb { background: var(--rule); border-radius: 3px; }
+  .lookup-list::-webkit-scrollbar-thumb:hover { background: var(--muted); }
+
+  .county-link {
+    display: block;
+    padding: 7px 10px;
+    font-size: 13px;
+    color: var(--soft-ink);
+    text-decoration: none;
+    border-radius: 3px;
+    transition: background 0.18s ease, color 0.18s ease, transform 0.18s ease, padding-left 0.18s ease;
+  }
+
+  .county-link:hover {
+    background: var(--blue-soft);
+    color: var(--blue-deep);
+    padding-left: 14px;
+  }
+
+  .county-link.hidden { display: none; }
+
+  .lookup-empty {
+    grid-column: 1 / -1;
+    padding: 14px 10px;
+    font-size: 12.5px;
+    color: var(--muted);
+    font-style: italic;
+    display: none;
+  }
+
+  .lookup-empty.show { display: block; }
+
+  @media (max-width: 780px) {
+    body { padding: 40px 22px 60px; }
+    header { flex-direction: column; align-items: flex-start; gap: 20px; }
+    .meta { text-align: left; }
+    h1 { font-size: 42px; }
+    .grid { grid-template-columns: 1fr; gap: 18px; }
+    .card { padding: 28px; min-height: 180px; }
+    .card-name { font-size: 26px; }
+    .lookups { grid-template-columns: 1fr; gap: 18px; }
+    .lookup-header { padding: 22px 24px; }
+    .lookup-title { font-size: 22px; }
+    .lookup-list { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 12px; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="title-block">
+        <div class="eyebrow">Practice Workspace</div>
+        <h1>Firm Tools</h1>
+      </div>
+      <div class="meta">
+        <div class="firm">Gerald Miller, P.A.</div>
+        <div>Minneapolis · Minnesota</div>
+      </div>
+    </header>
+
+    <div class="grid">
+      <a class="card" href="https://gmannion5149.github.io/Retainergenerator/" target="_blank" rel="noopener">
+        <div class="card-num">i.</div>
+        <div class="card-name">Retainer Generator</div>
+        <div class="card-desc">Build retainer agreements ready to send for signature.</div>
+        <div class="card-cta">Open Tool <span class="arrow">→</span></div>
+      </a>
+
+      <a class="card" href="https://gmannion5149.github.io/Clio-Notes-Generator/" target="_blank" rel="noopener">
+        <div class="card-num">ii.</div>
+        <div class="card-name">Note Generator</div>
+        <div class="card-desc">Draft Clio-ready case notes from quick inputs or dictation.</div>
+        <div class="card-cta">Open Tool <span class="arrow">→</span></div>
+      </a>
+
+      <a class="card" href="https://gmannion5149.github.io/paysheet-generator/" target="_blank" rel="noopener">
+        <div class="card-num">iii.</div>
+        <div class="card-name">Fee Payment Form</div>
+        <div class="card-desc">Generate Fee Payment Forms to track case commission.</div>
+        <div class="card-cta">Open Tool <span class="arrow">→</span></div>
+      </a>
+
+      <a class="card" href="https://gmannion5149.github.io/Welcome-Letter/" target="_blank" rel="noopener">
+        <div class="card-num">iv.</div>
+        <div class="card-name">Welcome Letter</div>
+        <div class="card-desc">Send a polished welcome letter to new clients in seconds.</div>
+        <div class="card-cta">Open Tool <span class="arrow">→</span></div>
+      </a>
+    </div>
+
+    <section class="lookups">
+      <div class="lookup" data-lookup="courts">
+        <button class="lookup-header" type="button" aria-expanded="false">
+          <div>
+            <div class="lookup-sub">Quick Lookup</div>
+            <div class="lookup-title">Minnesota Courts</div>
+          </div>
+          <span class="lookup-chev" aria-hidden="true">▾</span>
+        </button>
+        <div class="lookup-body">
+          <div class="lookup-inner">
+            <input type="text" class="lookup-search" placeholder="Search county..." aria-label="Search counties">
+            <div class="lookup-list" data-list="courts"><a class="county-link" target="_blank" rel="noopener" href="https://mncourts.gov/find-courts/aitkin" data-name="aitkin">Aitkin</a><a class="county-link" target="_blank" rel="noopener" href="https://mncourts.gov/find-courts/anoka" data-name="anoka">Anoka</a><a class="county-link" target="_blank" rel="noopener" href="https://mncourts.gov/find-courts/becker" data-name="becker">Becker</a><a class="county-link" target="_blank" rel="noopener" href="https://mncourts.gov/find-courts/beltrami" data-name="beltrami">Beltrami</a><a class="county-link" target="_blank" rel="noopener" href="https://mncourts.gov/find-courts/benton" data-name="benton">Benton</a><a class="county-link" target="_blank" rel="noopener" href="https://mncourts.gov/find-courts/bigstone" data-name="big stone">Big Stone</a><a class="county-link" target="_blank" rel="noopener" href="https://mncourts.gov/find-courts/blueearth" data-name="blue earth">Blue Earth</a><a class="county-link" target="_blank" rel="noopener" href="https://mncourts.gov/find-courts/brown" data-name="brown">Brown</a><a class="county-link" target="_blank" rel="noopener" href="https://mncourts.gov/find-courts/carlton" data-name="carlton">Carlton</a><a class="county-link" target="_blank" rel="noopener" href="https://mncourts.gov/find-courts/carver" data-name="carver">Carver</a><a class="county-link" target="_blank" rel="noopener" href="https://mncourts.gov/find-courts/cass" data-name="cass">Cass</a><a class="county-link" target="_blank" rel="noopener" href="https://mncourts.gov/find-courts/chippewa" data-name="chippewa">Chippewa</a><a class="county-link" target="_blank" rel="noopener" href="https://mncourts.gov/find-courts/chisago" data-name="chisago">Chisago</a><a class="county-link" target="_blank" rel="noopener" href="https://mncourts.gov/find-courts/clay" data-name="clay">Clay</a><a class="county-link" target="_blank" rel="noopener" href="https://mncourts.gov/find-courts/clearwater" data-name="clearwater">Clearwater</a><a class="county-link" target="_blank" rel="noopener" href="https://mncourts.gov/find-courts/cook" data-name="cook">Cook</a><a class="county-link" target="_blank" rel="noopener" href="https://mncourts.gov/find-courts/cottonwood" data-name="cottonwood">Cottonwood</a><a class="county-link" target="_blank" rel="noopener" href="https://mncourts.gov/find-courts/crowwing" data-name="crow wing">Crow Wing</a><a class="county-link" target="_blank" rel="noopener" href="https://mncourts.gov/find-courts/dakota" data-name="dakota">Dakota</a><a class="county-link" target="_blank" rel="noopener" href="https://mncourts.gov/find-courts/dodge" data-name="dodge">Dodge</a><a class="county-link" target="_blank" rel="noopener" href="https://mncourts.gov/find-courts/douglas" data-name="douglas">Douglas</a><a class="county-link" target="_blank" rel="noopener" href="https://mncourts.gov/find-courts/faribault" data-name="faribault">Faribault</a><a class="county-link" target="_blank" rel="noopener" href="https://mncourts.gov/find-courts/fillmore" data-name="fillmore">Fillmore</a><a class="county-link" target="_blank" rel="noopener" href="https://mncourts.gov/find-courts/freeborn" data-name="freeborn">Freeborn</a><a class="county-link" target="_blank" rel="noopener" href="https://mncourts.gov/find-courts/goodhue" data-name="goodhue">Goodhue</a><a class="county-link" target="_blank" rel="noopener" href="https://mncourts.gov/find-courts/grant" data-name="grant">Grant</a><a class="county-link" target="_blank" rel="noopener" href="https://mncourts.gov/find-courts/hennepin" data-name="hennepin">Hennepin</a><a class="county-link" target="_blank" rel="noopener" href="https://mncourts.gov/find-courts/houston" data-name="houston">Houston</a><a class="county-link" target="_blank" rel="noopener" href="https://mncourts.gov/find-courts/hubbard" data-name="hubbard">Hubbard</a><a class="county-link" target="_blank" rel="noopener" href="https://mncourts.gov/find-courts/isanti" data-name="isanti">Isanti</a><a class="county-link" target="_blank" rel="noopener" href="https://mncourts.gov/find-courts/itasca" data-name="itasca">Itasca</a><a class="county-link" target="_blank" rel="noopener" href="https://mncourts.gov/find-courts/jackson" data-name="jackson">Jackson</a><a class="county-link" target="_blank" rel="noopener" href="https://mncourts.gov/find-courts/kanabec" data-name="kanabec">Kanabec</a><a class="county-link" target="_blank" rel="noopener" href="https://mncourts.gov/find-courts/kandiyohi" data-name="kandiyohi">Kandiyohi</a><a class="county-link" target="_blank" rel="noopener" href="https://mncourts.gov/find-courts/kittson" data-name="kittson">Kittson</a><a class="county-link" target="_blank" rel="noopener" href="https://mncourts.gov/find-courts/koochiching" data-name="koochiching">Koochiching</a><a class="county-link" target="_blank" rel="noopener" href="https://mncourts.gov/find-courts/lacquiparle" data-name="lac qui parle">Lac qui Parle</a><a class="county-link" target="_blank" rel="noopener" href="https://mncourts.gov/find-courts/lake" data-name="lake">Lake</a><a class="county-link" target="_blank" rel="noopener" href="https://mncourts.gov/find-courts/lakeofthewoods" data-name="lake of the woods">Lake of the Woods</a><a class="county-link" target="_blank" rel="noopener" href="https://mncourts.gov/find-courts/lesueur" data-name="le sueur">Le Sueur</a><a class="county-link" target="_blank" rel="noopener" href="https://mncourts.gov/find-courts/lincoln" data-name="lincoln">Lincoln</a><a class="county-link" target="_blank" rel="noopener" href="https://mncourts.gov/find-courts/lyon" data-name="lyon">Lyon</a><a class="county-link" target="_blank" rel="noopener" href="https://mncourts.gov/find-courts/mahnomen" data-name="mahnomen">Mahnomen</a><a class="county-link" target="_blank" rel="noopener" href="https://mncourts.gov/find-courts/marshall" data-name="marshall">Marshall</a><a class="county-link" target="_blank" rel="noopener" href="https://mncourts.gov/find-courts/martin" data-name="martin">Martin</a><a class="county-link" target="_blank" rel="noopener" href="https://mncourts.gov/find-courts/mcleod" data-name="mcleod">McLeod</a><a class="county-link" target="_blank" rel="noopener" href="https://mncourts.gov/find-courts/meeker" data-name="meeker">Meeker</a><a class="county-link" target="_blank" rel="noopener" href="https://mncourts.gov/find-courts/millelacs" data-name="mille lacs">Mille Lacs</a><a class="county-link" target="_blank" rel="noopener" href="https://mncourts.gov/find-courts/morrison" data-name="morrison">Morrison</a><a class="county-link" target="_blank" rel="noopener" href="https://mncourts.gov/find-courts/mower" data-name="mower">Mower</a><a class="county-link" target="_blank" rel="noopener" href="https://mncourts.gov/find-courts/murray" data-name="murray">Murray</a><a class="county-link" target="_blank" rel="noopener" href="https://mncourts.gov/find-courts/nicollet" data-name="nicollet">Nicollet</a><a class="county-link" target="_blank" rel="noopener" href="https://mncourts.gov/find-courts/nobles" data-name="nobles">Nobles</a><a class="county-link" target="_blank" rel="noopener" href="https://mncourts.gov/find-courts/norman" data-name="norman">Norman</a><a class="county-link" target="_blank" rel="noopener" href="https://mncourts.gov/find-courts/olmsted" data-name="olmsted">Olmsted</a><a class="county-link" target="_blank" rel="noopener" href="https://mncourts.gov/find-courts/ottertail" data-name="otter tail">Otter Tail</a><a class="county-link" target="_blank" rel="noopener" href="https://mncourts.gov/find-courts/pennington" data-name="pennington">Pennington</a><a class="county-link" target="_blank" rel="noopener" href="https://mncourts.gov/find-courts/pine" data-name="pine">Pine</a><a class="county-link" target="_blank" rel="noopener" href="https://mncourts.gov/find-courts/pipestone" data-name="pipestone">Pipestone</a><a class="county-link" target="_blank" rel="noopener" href="https://mncourts.gov/find-courts/polk" data-name="polk">Polk</a><a class="county-link" target="_blank" rel="noopener" href="https://mncourts.gov/find-courts/pope" data-name="pope">Pope</a><a class="county-link" target="_blank" rel="noopener" href="https://mncourts.gov/find-courts/ramsey" data-name="ramsey">Ramsey</a><a class="county-link" target="_blank" rel="noopener" href="https://mncourts.gov/find-courts/redlake" data-name="red lake">Red Lake</a><a class="county-link" target="_blank" rel="noopener" href="https://mncourts.gov/find-courts/redwood" data-name="redwood">Redwood</a><a class="county-link" target="_blank" rel="noopener" href="https://mncourts.gov/find-courts/renville" data-name="renville">Renville</a><a class="county-link" target="_blank" rel="noopener" href="https://mncourts.gov/find-courts/rice" data-name="rice">Rice</a><a class="county-link" target="_blank" rel="noopener" href="https://mncourts.gov/find-courts/rock" data-name="rock">Rock</a><a class="county-link" target="_blank" rel="noopener" href="https://mncourts.gov/find-courts/roseau" data-name="roseau">Roseau</a><a class="county-link" target="_blank" rel="noopener" href="https://mncourts.gov/find-courts/scott" data-name="scott">Scott</a><a class="county-link" target="_blank" rel="noopener" href="https://mncourts.gov/find-courts/sherburne" data-name="sherburne">Sherburne</a><a class="county-link" target="_blank" rel="noopener" href="https://mncourts.gov/find-courts/sibley" data-name="sibley">Sibley</a><a class="county-link" target="_blank" rel="noopener" href="https://mncourts.gov/find-courts/stlouis" data-name="st. louis">St. Louis</a><a class="county-link" target="_blank" rel="noopener" href="https://mncourts.gov/find-courts/stearns" data-name="stearns">Stearns</a><a class="county-link" target="_blank" rel="noopener" href="https://mncourts.gov/find-courts/steele" data-name="steele">Steele</a><a class="county-link" target="_blank" rel="noopener" href="https://mncourts.gov/find-courts/stevens" data-name="stevens">Stevens</a><a class="county-link" target="_blank" rel="noopener" href="https://mncourts.gov/find-courts/swift" data-name="swift">Swift</a><a class="county-link" target="_blank" rel="noopener" href="https://mncourts.gov/find-courts/todd" data-name="todd">Todd</a><a class="county-link" target="_blank" rel="noopener" href="https://mncourts.gov/find-courts/traverse" data-name="traverse">Traverse</a><a class="county-link" target="_blank" rel="noopener" href="https://mncourts.gov/find-courts/wabasha" data-name="wabasha">Wabasha</a><a class="county-link" target="_blank" rel="noopener" href="https://mncourts.gov/find-courts/wadena" data-name="wadena">Wadena</a><a class="county-link" target="_blank" rel="noopener" href="https://mncourts.gov/find-courts/waseca" data-name="waseca">Waseca</a><a class="county-link" target="_blank" rel="noopener" href="https://mncourts.gov/find-courts/washington" data-name="washington">Washington</a><a class="county-link" target="_blank" rel="noopener" href="https://mncourts.gov/find-courts/watonwan" data-name="watonwan">Watonwan</a><a class="county-link" target="_blank" rel="noopener" href="https://mncourts.gov/find-courts/wilkin" data-name="wilkin">Wilkin</a><a class="county-link" target="_blank" rel="noopener" href="https://mncourts.gov/find-courts/winona" data-name="winona">Winona</a><a class="county-link" target="_blank" rel="noopener" href="https://mncourts.gov/find-courts/wright" data-name="wright">Wright</a><a class="county-link" target="_blank" rel="noopener" href="https://mncourts.gov/find-courts/yellowmedicine" data-name="yellow medicine">Yellow Medicine</a><div class="lookup-empty">No counties match.</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="lookup" data-lookup="jails">
+        <button class="lookup-header" type="button" aria-expanded="false">
+          <div>
+            <div class="lookup-sub">Quick Lookup</div>
+            <div class="lookup-title">Minnesota Jail Rosters</div>
+          </div>
+          <span class="lookup-chev" aria-hidden="true">▾</span>
+        </button>
+        <div class="lookup-body">
+          <div class="lookup-inner">
+            <input type="text" class="lookup-search" placeholder="Search county..." aria-label="Search counties">
+            <div class="lookup-list" data-list="jails"><a class="county-link" target="_blank" rel="noopener" href="https://www.co.aitkin.mn.us/departments/sheriff/inmates/Current-Inmate-Roster.pdf" data-name="aitkin">Aitkin</a><a class="county-link" target="_blank" rel="noopener" href="https://www.anokacountymn.gov/727/Inmate-Locator" data-name="anoka">Anoka</a><a class="county-link" target="_blank" rel="noopener" href="https://www.co.becker.mn.us/dept/sheriff/incustody.aspx" data-name="becker">Becker</a><a class="county-link" target="_blank" rel="noopener" href="https://inmates.co.beltrami.mn.us/" data-name="beltrami">Beltrami</a><a class="county-link" target="_blank" rel="noopener" href="https://jail.co.benton.mn.us/Default.aspx" data-name="benton">Benton</a><a class="county-link" target="_blank" rel="noopener" href="https://bigstonecounty.gov/departments/sheriff/" data-name="big stone">Big Stone</a><a class="county-link" target="_blank" rel="noopener" href="https://jailroster.blueearthcountymn.gov/" data-name="blue earth">Blue Earth</a><a class="county-link" target="_blank" rel="noopener" href="https://www.co.brown.mn.us/DocumentCenter/View/347/Jail-Roster-PDF" data-name="brown">Brown</a><a class="county-link" target="_blank" rel="noopener" href="https://jailroster.co.carlton.mn.us/CCJ_Jail_Roster.pdf" data-name="carlton">Carlton</a><a class="county-link" target="_blank" rel="noopener" href="https://www.carvercountymn.gov/departments/county-sheriff/jail-services/daily-inmate-roster" data-name="carver">Carver</a><a class="county-link" target="_blank" rel="noopener" href="https://cassweb.casscountymn.gov/sheriff/jail/Jail_Register_Website.pdf" data-name="cass">Cass</a><a class="county-link" target="_blank" rel="noopener" href="https://letg.chippewa.mn/custody.html" data-name="chippewa">Chippewa</a><a class="county-link" target="_blank" rel="noopener" href="https://inmatelocator.chisagocountymn.gov/inmatelocator/" data-name="chisago">Chisago</a><a class="county-link" target="_blank" rel="noopener" href="https://claycountymn.gov/1454/Inmate-Roster" data-name="clay">Clay</a><a class="county-link" target="_blank" rel="noopener" href="https://www.clearwatercountymn.gov/index.asp?SEC=BE9C6A57-2C65-48DA-9F9D-B2B76D6339BA" data-name="clearwater">Clearwater</a><a class="county-link" target="_blank" rel="noopener" href="https://co.cook.mn.us/government/departments/sheriff/jail_roster.php#outer-693" data-name="cook">Cook</a><a class="county-link" target="_blank" rel="noopener" href="https://www.co.cottonwood.mn.us/departments/courts___legal/sheriff/jail_roster.php" data-name="cottonwood">Cottonwood</a><a class="county-link" target="_blank" rel="noopener" href="https://www.crowwing.gov/1532/In-Custody-List" data-name="crow wing">Crow Wing</a><a class="county-link" target="_blank" rel="noopener" href="https://www.co.dakota.mn.us/LawJustice/Jail/InmateSearch/Pages/default.aspx" data-name="dakota">Dakota</a><a class="county-link" target="_blank" rel="noopener" href="https://webapp.co.olmsted.mn.us/PubIntWebApps/detaineelistdodge" data-name="dodge">Dodge</a><a class="county-link" target="_blank" rel="noopener" href="https://www.douglascountymn.gov/inmate-roster" data-name="douglas">Douglas</a><a class="county-link" target="_blank" rel="noopener" href="http://www.bevcommasp.com/fcjail/custodylistFar.rpt.html" data-name="faribault">Faribault</a><a class="county-link" target="_blank" rel="noopener" href="https://www.co.fillmore.mn.us/departments/sheriff/jail/current_inmate_jail_roster.php" data-name="fillmore">Fillmore</a><a class="county-link" target="_blank" rel="noopener" href="https://www.co.freeborn.mn.us/438/Jail-Roster" data-name="freeborn">Freeborn</a><a class="county-link" target="_blank" rel="noopener" href="https://goodhuecountymn.gov/files/sheriff/jail_roster.pdf" data-name="goodhue">Goodhue</a><a class="county-link" target="_blank" rel="noopener" href="https://www.co.grant.mn.us/178/Sheriff" data-name="grant">Grant</a><a class="county-link" target="_blank" rel="noopener" href="https://jailroster.hennepin.us/" data-name="hennepin">Hennepin</a><a class="county-link" target="_blank" rel="noopener" href="https://www.co.houston.mn.us/in-custody/" data-name="houston">Houston</a><a class="county-link" target="_blank" rel="noopener" href="https://prophoenix.co.hubbard.mn.us/InmateLocator/" data-name="hubbard">Hubbard</a><a class="county-link" target="_blank" rel="noopener" href="https://www.co.isanti.mn.us/425/In-Custody" data-name="isanti">Isanti</a><a class="county-link" target="_blank" rel="noopener" href="https://www.co.itasca.mn.us/QuickLinks.aspx?CID=46" data-name="itasca">Itasca</a><a class="county-link" target="_blank" rel="noopener" href="https://sites.google.com/co.jackson.mn.us/jailroster/home" data-name="jackson">Jackson</a><a class="county-link" target="_blank" rel="noopener" href="https://www.kanabeccounty.org/departments/jail.php" data-name="kanabec">Kanabec</a><a class="county-link" target="_blank" rel="noopener" href="https://www2.kcmn.us/LETG/custody/custody.html" data-name="kandiyohi">Kandiyohi</a><a class="county-link" target="_blank" rel="noopener" href="https://www.communitycorrections-tccc.org/index.asp?SEC=7AA2A95C-63E9-415B-9B67-C9E68D3D1F20&amp;Type=B_BASIC" data-name="kittson">Kittson</a><a class="county-link" target="_blank" rel="noopener" href="https://parcelinfo.com/pidatafiles/koochiching/JRR/KCJ_Jail_Roster.pdf" data-name="koochiching">Koochiching</a><a class="county-link" target="_blank" rel="noopener" href="https://mail.lqpco.com/letg/custody.html" data-name="lac qui parle">Lac qui Parle</a><a class="county-link" target="_blank" rel="noopener" href="https://www.co.lake.mn.us/sheriff/lake-county-jail/" data-name="lake">Lake</a><a class="county-link" target="_blank" rel="noopener" href="https://www.co.lake-of-the-woods.mn.us/sheriffs-office/detention-center-jail/" data-name="lake of the woods">Lake of the Woods</a><a class="county-link" target="_blank" rel="noopener" href="https://www.lesueurcounty.gov/801/Jail-Roster" data-name="le sueur">Le Sueur</a><a class="county-link" target="_blank" rel="noopener" href="https://www.co.lincoln.mn.us/departments_agencies/sheriff/index.php" data-name="lincoln">Lincoln</a><a class="county-link" target="_blank" rel="noopener" href="https://jail.lyonco.org/custodylistLyon.rpt.html" data-name="lyon">Lyon</a><a class="county-link" target="_blank" rel="noopener" href="https://co.mahnomen.mn.us/department/departments_i_z/sheriff/index.php" data-name="mahnomen">Mahnomen</a><a class="county-link" target="_blank" rel="noopener" href="https://www.marshallso.org/inmate-roster/filters/current/booking_time=desc/1" data-name="marshall">Marshall</a><a class="county-link" target="_blank" rel="noopener" href="https://cms9files.revize.com/martincountymn/government/Sheriff/custodylistMAR.rpt.pdf" data-name="martin">Martin</a><a class="county-link" target="_blank" rel="noopener" href="https://cms5.revize.com/revize/mcleod/ftp/Sheriff/In%20Custody/custody.html" data-name="mcleod">McLeod</a><a class="county-link" target="_blank" rel="noopener" href="https://www.co.meeker.mn.us/DocumentCenter/View/721/Meeker-County-Jail-Roster?bidId=" data-name="meeker">Meeker</a><a class="county-link" target="_blank" rel="noopener" href="https://ftp.co.mille-lacs.mn.us/custody2.html" data-name="mille lacs">Mille Lacs</a><a class="county-link" target="_blank" rel="noopener" href="https://incustody.morrisoncountymn.gov/" data-name="morrison">Morrison</a><a class="county-link" target="_blank" rel="noopener" href="https://www.co.mower.mn.us/198/County-Jail" data-name="mower">Mower</a><a class="county-link" target="_blank" rel="noopener" href="https://www.inmatesearchminnesota.org/Murray_County.html" data-name="murray">Murray</a><a class="county-link" target="_blank" rel="noopener" href="https://www.inmatesearchminnesota.org/Nicollet_County.html" data-name="nicollet">Nicollet</a><a class="county-link" target="_blank" rel="noopener" href="https://www.co.nobles.mn.us/departments/sheriff/inmate-listing/" data-name="nobles">Nobles</a><a class="county-link" target="_blank" rel="noopener" href="https://www.inmatesearchminnesota.org/Norman_County.html" data-name="norman">Norman</a><a class="county-link" target="_blank" rel="noopener" href="https://www.olmstedcounty.gov/residents/public-safety-law-enforcement/active-warrants/who-is-in-custody" data-name="olmsted">Olmsted</a><a class="county-link" target="_blank" rel="noopener" href="https://web1.co.ottertail.mn.us/sheriff/report/custody%20list.rpt.pdf" data-name="otter tail">Otter Tail</a><a class="county-link" target="_blank" rel="noopener" href="https://incustodysearch.penningtonsheriff.org/" data-name="pennington">Pennington</a><a class="county-link" target="_blank" rel="noopener" href="https://www.pinecountymn.gov/departments/jail/jail_roster.php" data-name="pine">Pine</a><a class="county-link" target="_blank" rel="noopener" href="https://custody.pcmn.us/Custody.html" data-name="pipestone">Pipestone</a><a class="county-link" target="_blank" rel="noopener" href="https://www.communitycorrections-tccc.org/?SEC=7AA2A95C-63E9-415B-9B67-C9E68D3D1F20" data-name="polk">Polk</a><a class="county-link" target="_blank" rel="noopener" href="https://www.communitycorrections-tccc.org/?SEC=7AA2A95C-63E9-415B-9B67-C9E68D3D1F20" data-name="pope">Pope</a><a class="county-link" target="_blank" rel="noopener" href="https://opendata.ramseycounty.us/stories/s/Ramsey-County-Adult-Detention-Center-Roster/xs99-2bse/" data-name="ramsey">Ramsey</a><a class="county-link" target="_blank" rel="noopener" href="https://www.communitycorrections-tccc.org/?SEC=7AA2A95C-63E9-415B-9B67-C9E68D3D1F20" data-name="red lake">Red Lake</a><a class="county-link" target="_blank" rel="noopener" href="https://redwoodcounty-mn.us/departments/sheriffs-office/in-custody/" data-name="redwood">Redwood</a><a class="county-link" target="_blank" rel="noopener" href="https://custody.renvillecountymn.gov/custody.html" data-name="renville">Renville</a><a class="county-link" target="_blank" rel="noopener" href="https://ricecojaillist.com/Inmate_Roster.pdf" data-name="rice">Rice</a><a class="county-link" target="_blank" rel="noopener" href="https://www.inmatesearchminnesota.org/Rock_County.html" data-name="rock">Rock</a><a class="county-link" target="_blank" rel="noopener" href="http://inmates.co.roseau.mn.us/" data-name="roseau">Roseau</a><a class="county-link" target="_blank" rel="noopener" href="https://www.scottcountymn.gov/1583/Jail-Roster" data-name="scott">Scott</a><a class="county-link" target="_blank" rel="noopener" href="https://inmatelocatorext.co.sherburne.mn.us/inmatelocator/" data-name="sherburne">Sherburne</a><a class="county-link" target="_blank" rel="noopener" href="https://sheriff.sibleycounty.gov/" data-name="sibley">Sibley</a><a class="county-link" target="_blank" rel="noopener" href="https://www.stlouiscountymn.gov/Portals/0/rpts/SLCJ_Jail_Roster.PDF?version=1.1" data-name="st. louis">St. Louis</a><a class="county-link" target="_blank" rel="noopener" href="https://jailroster.stearnscountymn.gov/Current" data-name="stearns">Stearns</a><a class="county-link" target="_blank" rel="noopener" href="https://cms2.revize.com/revize/steelecountynew/DetentionCenter/Inmate_Roster.pdf" data-name="steele">Steele</a><a class="county-link" target="_blank" rel="noopener" href="https://www.co.stevens.mn.us/868/Sheriff" data-name="stevens">Stevens</a><a class="county-link" target="_blank" rel="noopener" href="https://mail.co.swift.mn.us/jail/custody.html" data-name="swift">Swift</a><a class="county-link" target="_blank" rel="noopener" href="https://www.co.todd.mn.us/sites/default/files/sheriff/daily_inmate_roster.pdf" data-name="todd">Todd</a><a class="county-link" target="_blank" rel="noopener" href="https://mail.co.traverse.mn.us/InmateRoster/Inmate_Roster.pdf" data-name="traverse">Traverse</a><a class="county-link" target="_blank" rel="noopener" href="https://cms9files1.revize.com/wabasha/uploads/custodylist.rpt.pdf" data-name="wabasha">Wabasha</a><a class="county-link" target="_blank" rel="noopener" href="https://www.co.wadena.mn.us/204/In-Custody-List" data-name="wadena">Wadena</a><a class="county-link" target="_blank" rel="noopener" href="https://www.wasecacounty.gov/DocumentCenter/View/9637/Waseca-County-Jail-Roster?bidId=" data-name="waseca">Waseca</a><a class="county-link" target="_blank" rel="noopener" href="https://web1.co.washington.mn.us/WCInmateRoster/InmateRosterReport.pdf" data-name="washington">Washington</a><a class="county-link" target="_blank" rel="noopener" href="https://www.co.watonwan.mn.us/DocumentCenter/View/67/Jail-Roster" data-name="watonwan">Watonwan</a><a class="county-link" target="_blank" rel="noopener" href="https://co.wilkin.mn.us/jail/" data-name="wilkin">Wilkin</a><a class="county-link" target="_blank" rel="noopener" href="https://www.winonaco.com/Sheriff/Reports/custody.html" data-name="winona">Winona</a><a class="county-link" target="_blank" rel="noopener" href="https://www.co.wright.mn.us/DocumentCenter/View/13203/Jail-Census" data-name="wright">Wright</a><a class="county-link" target="_blank" rel="noopener" href="https://www2.co.ym.mn.gov/awlcustody/custody.html" data-name="yellow medicine">Yellow Medicine</a><div class="lookup-empty">No counties match.</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div>For Internal Use Only</div>
+      <div class="mark">Gerald Miller, P.A.</div>
+    </footer>
+  </div>
+
+<script>
+  const COURT_BASE = 'https://mncourts.gov/find-courts/';
+  const counties = [
+    { name: 'Aitkin',           court: 'aitkin',         jail: 'https://www.co.aitkin.mn.us/departments/sheriff/inmates/Current-Inmate-Roster.pdf' },
+    { name: 'Anoka',            court: 'anoka',          jail: 'https://www.anokacountymn.gov/727/Inmate-Locator' },
+    { name: 'Becker',           court: 'becker',         jail: 'https://www.co.becker.mn.us/dept/sheriff/incustody.aspx' },
+    { name: 'Beltrami',         court: 'beltrami',       jail: 'https://inmates.co.beltrami.mn.us' },
+    { name: 'Benton',           court: 'benton',         jail: 'https://jail.co.benton.mn.us/Default.aspx' },
+    { name: 'Big Stone',        court: 'bigstone',       jail: 'https://bigstonecounty.gov/departments/sheriff/' },
+    { name: 'Blue Earth',       court: 'blueearth',      jail: 'https://jailroster.blueearthcountymn.gov/' },
+    { name: 'Brown',            court: 'brown',          jail: 'https://www.co.brown.mn.us/DocumentCenter/View/347/Jail-Roster-PDF' },
+    { name: 'Carlton',          court: 'carlton',        jail: 'https://jailroster.co.carlton.mn.us/CCJ_Jail_Roster.pdf' },
+    { name: 'Carver',           court: 'carver',         jail: 'https://www.carvercountymn.gov/departments/county-sheriff/jail-services/daily-inmate-roster' },
+    { name: 'Cass',             court: 'cass',           jail: 'https://cassweb.casscountymn.gov/sheriff/jail/Jail_Register_Website.pdf' },
+    { name: 'Chippewa',         court: 'chippewa',       jail: 'https://letg.chippewa.mn/custody.html' },
+    { name: 'Chisago',          court: 'chisago',        jail: 'https://inmatelocator.chisagocountymn.gov/inmatelocator/' },
+    { name: 'Clay',             court: 'clay',           jail: 'https://claycountymn.gov/1454/Inmate-Roster' },
+    { name: 'Clearwater',       court: 'clearwater',     jail: 'https://www.clearwatercountymn.gov/index.asp?SEC=BE9C6A57-2C65-48DA-9F9D-B2B76D6339BA' },
+    { name: 'Cook',             court: 'cook',           jail: 'https://co.cook.mn.us/government/departments/sheriff/jail_roster.php#outer-693' },
+    { name: 'Cottonwood',       court: 'cottonwood',     jail: 'https://www.co.cottonwood.mn.us/departments/courts___legal/sheriff/jail_roster.php' },
+    { name: 'Crow Wing',        court: 'crowwing',       jail: 'https://www.crowwing.gov/1532/In-Custody-List' },
+    { name: 'Dakota',           court: 'dakota',         jail: 'https://www.co.dakota.mn.us/LawJustice/Jail/InmateSearch/Pages/default.aspx' },
+    { name: 'Dodge',            court: 'dodge',          jail: 'https://webapp.co.olmsted.mn.us/PubIntWebApps/detaineelistdodge' },
+    { name: 'Douglas',          court: 'douglas',        jail: 'https://www.douglascountymn.gov/inmate-roster' },
+    { name: 'Faribault',        court: 'faribault',      jail: 'http://www.bevcommasp.com/fcjail/custodylistFar.rpt.html' },
+    { name: 'Fillmore',         court: 'fillmore',       jail: 'https://www.co.fillmore.mn.us/departments/sheriff/jail/current_inmate_jail_roster.php' },
+    { name: 'Freeborn',         court: 'freeborn',       jail: 'https://www.co.freeborn.mn.us/438/Jail-Roster' },
+    { name: 'Goodhue',          court: 'goodhue',        jail: 'https://goodhuecountymn.gov/files/sheriff/jail_roster.pdf' },
+    { name: 'Grant',            court: 'grant',          jail: 'https://www.co.grant.mn.us/178/Sheriff' },
+    { name: 'Hennepin',         court: 'hennepin',       jail: 'https://jailroster.hennepin.us' },
+    { name: 'Houston',          court: 'houston',        jail: 'https://www.co.houston.mn.us/in-custody/' },
+    { name: 'Hubbard',          court: 'hubbard',        jail: 'https://prophoenix.co.hubbard.mn.us/InmateLocator/' },
+    { name: 'Isanti',           court: 'isanti',         jail: 'https://www.co.isanti.mn.us/425/In-Custody' },
+    { name: 'Itasca',           court: 'itasca',         jail: 'https://www.co.itasca.mn.us/QuickLinks.aspx?CID=46' },
+    { name: 'Jackson',          court: 'jackson',        jail: 'https://sites.google.com/co.jackson.mn.us/jailroster/home' },
+    { name: 'Kanabec',          court: 'kanabec',        jail: 'https://www.kanabeccounty.org/departments/jail.php' },
+    { name: 'Kandiyohi',        court: 'kandiyohi',      jail: 'https://www2.kcmn.us/LETG/custody/custody.html' },
+    { name: 'Kittson',          court: 'kittson',        jail: 'https://www.communitycorrections-tccc.org/index.asp?SEC=7AA2A95C-63E9-415B-9B67-C9E68D3D1F20&Type=B_BASIC' },
+    { name: 'Koochiching',      court: 'koochiching',    jail: 'https://parcelinfo.com/pidatafiles/koochiching/JRR/KCJ_Jail_Roster.pdf' },
+    { name: 'Lac qui Parle',    court: 'lacquiparle',    jail: 'https://mail.lqpco.com/letg/custody.html' },
+    { name: 'Lake',             court: 'lake',           jail: 'https://www.co.lake.mn.us/sheriff/lake-county-jail/' },
+    { name: 'Lake of the Woods',court: 'lakeofthewoods', jail: 'https://www.co.lake-of-the-woods.mn.us/sheriffs-office/detention-center-jail/' },
+    { name: 'Le Sueur',         court: 'lesueur',        jail: 'https://www.lesueurcounty.gov/801/Jail-Roster' },
+    { name: 'Lincoln',          court: 'lincoln',        jail: 'https://www.co.lincoln.mn.us/departments_agencies/sheriff/index.php' },
+    { name: 'Lyon',             court: 'lyon',           jail: 'https://jail.lyonco.org/custodylistLyon.rpt.html' },
+    { name: 'Mahnomen',         court: 'mahnomen',       jail: 'https://co.mahnomen.mn.us/department/departments_i_z/sheriff/index.php' },
+    { name: 'Marshall',         court: 'marshall',       jail: 'https://www.marshallso.org/inmate-roster/filters/current/booking_time=desc/1' },
+    { name: 'Martin',           court: 'martin',         jail: 'https://cms9files.revize.com/martincountymn/government/Sheriff/custodylistMAR.rpt.pdf' },
+    { name: 'McLeod',           court: 'mcleod',         jail: 'https://cms5.revize.com/revize/mcleod/ftp/Sheriff/In%20Custody/custody.html' },
+    { name: 'Meeker',           court: 'meeker',         jail: 'https://www.co.meeker.mn.us/DocumentCenter/View/721/Meeker-County-Jail-Roster?bidId=' },
+    { name: 'Mille Lacs',       court: 'millelacs',      jail: 'https://ftp.co.mille-lacs.mn.us/custody2.html' },
+    { name: 'Morrison',         court: 'morrison',       jail: 'https://incustody.morrisoncountymn.gov' },
+    { name: 'Mower',            court: 'mower',          jail: 'https://www.co.mower.mn.us/198/County-Jail' },
+    { name: 'Murray',           court: 'murray',         jail: 'https://www.inmatesearchminnesota.org/Murray_County.html' },
+    { name: 'Nicollet',         court: 'nicollet',       jail: 'https://www.inmatesearchminnesota.org/Nicollet_County.html' },
+    { name: 'Nobles',           court: 'nobles',         jail: 'https://www.co.nobles.mn.us/departments/sheriff/inmate-listing/' },
+    { name: 'Norman',           court: 'norman',         jail: 'https://www.inmatesearchminnesota.org/Norman_County.html' },
+    { name: 'Olmsted',          court: 'olmsted',        jail: 'https://www.olmstedcounty.gov/residents/public-safety-law-enforcement/active-warrants/who-is-in-custody' },
+    { name: 'Otter Tail',       court: 'ottertail',      jail: 'https://web1.co.ottertail.mn.us/sheriff/report/custody%20list.rpt.pdf' },
+    { name: 'Pennington',       court: 'pennington',     jail: 'https://incustodysearch.penningtonsheriff.org' },
+    { name: 'Pine',             court: 'pine',           jail: 'https://www.pinecountymn.gov/departments/jail/jail_roster.php' },
+    { name: 'Pipestone',        court: 'pipestone',      jail: 'https://custody.pcmn.us/Custody.html' },
+    { name: 'Polk',             court: 'polk',           jail: 'https://www.communitycorrections-tccc.org/?SEC=7AA2A95C-63E9-415B-9B67-C9E68D3D1F20' },
+    { name: 'Pope',             court: 'pope',           jail: 'https://www.communitycorrections-tccc.org/?SEC=7AA2A95C-63E9-415B-9B67-C9E68D3D1F20' },
+    { name: 'Ramsey',           court: 'ramsey',         jail: 'https://opendata.ramseycounty.us/stories/s/Ramsey-County-Adult-Detention-Center-Roster/xs99-2bse/' },
+    { name: 'Red Lake',         court: 'redlake',        jail: 'https://www.communitycorrections-tccc.org/?SEC=7AA2A95C-63E9-415B-9B67-C9E68D3D1F20' },
+    { name: 'Redwood',          court: 'redwood',        jail: 'https://redwoodcounty-mn.us/departments/sheriffs-office/in-custody/' },
+    { name: 'Renville',         court: 'renville',       jail: 'https://custody.renvillecountymn.gov/custody.html' },
+    { name: 'Rice',             court: 'rice',           jail: 'https://ricecojaillist.com/Inmate_Roster.pdf' },
+    { name: 'Rock',             court: 'rock',           jail: 'https://www.inmatesearchminnesota.org/Rock_County.html' },
+    { name: 'Roseau',           court: 'roseau',         jail: 'http://inmates.co.roseau.mn.us' },
+    { name: 'Scott',            court: 'scott',          jail: 'https://www.scottcountymn.gov/1583/Jail-Roster' },
+    { name: 'Sherburne',        court: 'sherburne',      jail: 'https://inmatelocatorext.co.sherburne.mn.us/inmatelocator/' },
+    { name: 'Sibley',           court: 'sibley',         jail: 'https://sheriff.sibleycounty.gov' },
+    { name: 'St. Louis',        court: 'stlouis',        jail: 'https://www.stlouiscountymn.gov/Portals/0/rpts/SLCJ_Jail_Roster.PDF?version=1.1' },
+    { name: 'Stearns',          court: 'stearns',        jail: 'https://jailroster.stearnscountymn.gov/Current' },
+    { name: 'Steele',           court: 'steele',         jail: 'https://cms2.revize.com/revize/steelecountynew/DetentionCenter/Inmate_Roster.pdf' },
+    { name: 'Stevens',          court: 'stevens',        jail: 'https://www.co.stevens.mn.us/868/Sheriff' },
+    { name: 'Swift',            court: 'swift',          jail: 'https://mail.co.swift.mn.us/jail/custody.html' },
+    { name: 'Todd',             court: 'todd',           jail: 'https://www.co.todd.mn.us/sites/default/files/sheriff/daily_inmate_roster.pdf' },
+    { name: 'Traverse',         court: 'traverse',       jail: 'https://mail.co.traverse.mn.us/InmateRoster/Inmate_Roster.pdf' },
+    { name: 'Wabasha',          court: 'wabasha',        jail: 'https://cms9files1.revize.com/wabasha/uploads/custodylist.rpt.pdf' },
+    { name: 'Wadena',           court: 'wadena',         jail: 'https://www.co.wadena.mn.us/204/In-Custody-List' },
+    { name: 'Waseca',           court: 'waseca',         jail: 'https://www.wasecacounty.gov/DocumentCenter/View/9637/Waseca-County-Jail-Roster?bidId=' },
+    { name: 'Washington',       court: 'washington',     jail: 'https://web1.co.washington.mn.us/WCInmateRoster/InmateRosterReport.pdf' },
+    { name: 'Watonwan',         court: 'watonwan',       jail: 'https://www.co.watonwan.mn.us/DocumentCenter/View/67/Jail-Roster' },
+    { name: 'Wilkin',           court: 'wilkin',         jail: 'https://co.wilkin.mn.us/jail/' },
+    { name: 'Winona',           court: 'winona',         jail: 'https://www.winonaco.com/Sheriff/Reports/custody.html' },
+    { name: 'Wright',           court: 'wright',         jail: 'https://www.co.wright.mn.us/DocumentCenter/View/13203/Jail-Census' },
+    { name: 'Yellow Medicine',  court: 'yellowmedicine', jail: 'https://www2.co.ym.mn.gov/awlcustody/custody.html' }
+  ];
+
+  function renderList(kind) {
+    const container = document.querySelector(`[data-list="${kind}"]`);
+    counties.forEach(c => {
+      const a = document.createElement('a');
+      a.className = 'county-link';
+      a.target = '_blank';
+      a.rel = 'noopener';
+      a.textContent = c.name;
+      a.href = kind === 'courts' ? (COURT_BASE + c.court) : c.jail;
+      a.dataset.name = c.name.toLowerCase();
+      container.appendChild(a);
+    });
+    const empty = document.createElement('div');
+    empty.className = 'lookup-empty';
+    empty.textContent = 'No counties match.';
+    container.appendChild(empty);
+  }
+
+  renderList('courts');
+  renderList('jails');
+
+  document.querySelectorAll('.lookup').forEach(panel => {
+    const header = panel.querySelector('.lookup-header');
+    const search = panel.querySelector('.lookup-search');
+    const list   = panel.querySelector('.lookup-list');
+    const empty  = panel.querySelector('.lookup-empty');
+
+    header.addEventListener('click', () => {
+      const isOpen = panel.classList.toggle('open');
+      header.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      if (isOpen) setTimeout(() => search.focus(), 200);
+    });
+
+    search.addEventListener('input', e => {
+      const q = e.target.value.trim().toLowerCase();
+      let visible = 0;
+      list.querySelectorAll('.county-link').forEach(a => {
+        const match = !q || a.dataset.name.includes(q);
+        a.classList.toggle('hidden', !match);
+        if (match) visible++;
+      });
+      empty.classList.toggle('show', visible === 0);
+    });
+  });
+</script>
+
+
+</body></html>
